@@ -7,5 +7,15 @@
 </head>
 <body>
     <h1>Welcome to the todo app home page</h1>
+    <hr>
+    <h2 style="color:crimson;text-align: center;">Todo List</h2>
+    <ul>
+        {% for todo in todos%}
+            <li>
+                <h3>{{todo.title}}</h3>
+                <p>{{todo.content}}</p>
+            </li>
+        {%endfor%}
+    </ul>
 </body>
 </html>
