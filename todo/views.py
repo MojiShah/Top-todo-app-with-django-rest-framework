@@ -18,3 +18,8 @@ def all_todos(request:Request):
         return Response(serializer.data,status.HTTP_201_CREATED)
     return Response(None,status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET','PUT','DELETE'])
+def todo_detail_view(request:Request,todo_id:int):
+    pass
+
