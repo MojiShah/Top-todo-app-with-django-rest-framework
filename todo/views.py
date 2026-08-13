@@ -21,5 +21,11 @@ def all_todos(request:Request):
 
 @api_view(['GET','PUT','DELETE'])
 def todo_detail_view(request:Request,todo_id:int):
-    pass
-
+    try:
+        todo:Todo = Todo.objects.get(pk=todo_id)
+    except:
+        return Response(None,status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        single_todo_serializer = TodoSerializer(todo)
+        return Response(single_todo_serializer.data,status.HTTP_200_OK)
