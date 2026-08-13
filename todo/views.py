@@ -15,7 +15,7 @@ def all_todos(request:Request):
         serializer = TodoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data,status.HTTP_201_CREATED)
+            return Response(serializer.data,status.HTTP_201_CREATED)
     return Response(None,status.HTTP_400_BAD_REQUEST)
 
 
@@ -27,5 +27,10 @@ def todo_detail_view(request:Request,todo_id:int):
         return Response(None,status.HTTP_404_NOT_FOUND)
     
     if request.method == 'GET':
-        single_todo_serializer = TodoSerializer(todo)
-        return Response(single_todo_serializer.data,status.HTTP_200_OK)
+        serializer = TodoSerializer(todo)
+        return Response(serializer.data,status.HTTP_200_OK)
+    elif request.method == 'PUT':
+        serializer = TodoSerializer(todo,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status.HTTP_202_ACCEPTED)        
