@@ -29,8 +29,14 @@ def todo_detail_view(request:Request,todo_id:int):
     if request.method == 'GET':
         serializer = TodoSerializer(todo)
         return Response(serializer.data,status.HTTP_200_OK)
+    
     elif request.method == 'PUT':
         serializer = TodoSerializer(todo,data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data,status.HTTP_202_ACCEPTED)        
+            return Response(serializer.data,status.HTTP_202_ACCEPTED)
+        return Response(None,status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        todo.delete() 
+        return Response(None,status.HTTP_204_NO_CONTENT)       
