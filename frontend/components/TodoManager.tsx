@@ -133,11 +133,7 @@ export default function TodoManager() {
         <TodoForm />
       </Modal>
 
-      <DeleteTodoModal
-        show={showDeleteModal}
-        onClose={handleCloseDeleteModal}
-        onConfirm={handleDelete}
-      />
+      <DeleteTodoModal/>
     </main>
   );
 }

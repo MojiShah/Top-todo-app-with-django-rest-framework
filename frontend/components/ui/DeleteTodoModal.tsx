@@ -1,51 +1,50 @@
 "use client";
 
 import Modal from "./Modal";
+import { useTodoContext } from "@/context/TodoContext";
 
-interface DeleteTodoModalProps {
-  show: boolean;
-  onClose: () => void;
-  onConfirm: () => Promise<void>;
-}
+export default function DeleteTodoModal() {
+  const {
+    showDeleteModal,
+    handleCloseDeleteModal,
+    handleDelete,
+    loading,
+  } = useTodoContext();
 
-export default function DeleteTodoModal({
-  show,
-  onClose,
-  onConfirm,
-}: DeleteTodoModalProps) {
   return (
     <Modal
-      show={show}
-      closeModal={onClose}
+      show={showDeleteModal}
+      closeModal={handleCloseDeleteModal}
       title="Delete Todo"
     >
       <div className="space-y-6">
         <div>
-          <p className="text-lg font-semibold text-gray-900">
+          <p className="text-lg font-semibold">
             Are you sure you want to delete this todo?
           </p>
 
-          <p className="mt-2 text-sm leading-6 text-gray-500">
-            This action cannot be undone. The todo will be
-            permanently deleted.
+          <p className="mt-2 text-sm text-gray-500">
+            This action cannot be undone.
           </p>
         </div>
 
         <div className="flex justify-end gap-3">
           <button
             type="button"
-            onClick={onClose}
-            className="rounded-xl border border-gray-300 px-5 py-3 font-semibold text-gray-700 transition hover:bg-gray-50"
+            onClick={handleCloseDeleteModal}
+            disabled={loading}
+            className="rounded-xl border px-5 py-3"
           >
             Cancel
           </button>
 
           <button
             type="button"
-            onClick={onConfirm}
-            className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white transition hover:bg-red-700"
+            onClick={handleDelete}
+            disabled={loading}
+            className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white"
           >
-            Delete
+            {loading ? "Deleting..." : "Delete"}
           </button>
         </div>
       </div>

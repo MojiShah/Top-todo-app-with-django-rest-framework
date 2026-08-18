@@ -1,4 +1,4 @@
-"use Client";
+"use client";
 
 import { createTodo, deleteTodo, updateTodo } from "@/lib/api";
 import { Todo, TodoPayload } from "@/types/todo";
