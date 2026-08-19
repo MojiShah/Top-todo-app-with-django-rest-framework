@@ -3,5 +3,9 @@ from . import views
 
 urlpatterns=[
     path('',views.all_todos),
-    path('<int:todo_id>/',views.todo_detail_view)
+    path('<int:todo_id>/',views.todo_detail_view),
+    path('cbv/',views.TodosListApiView.as_view()),
+    path('cbv/<int:todo_id>',views.TodoDetailApiView.as_view()),
+    path('mixins/',views.TodoListMixinApiView.as_view()),
+    path('mixins/<pk>',views.TodoDetailMixinApiView.as_view())
 ]

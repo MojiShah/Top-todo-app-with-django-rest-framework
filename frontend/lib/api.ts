@@ -2,7 +2,7 @@ import { Todo, TodoPayload } from "@/types/todo";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 if (!API_URL) throw new Error("NEXT_PUBLIC_API_URL is not defined");
-const TODO_URL = `${API_URL}/todo/`;
+const TODO_URL = `${API_URL}todo/mixins/`;
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -38,7 +38,7 @@ export async function createTodo(payload: TodoPayload): Promise<Todo> {
 }
 
 export async function updateTodo(id: number,payload: TodoPayload): Promise<Todo> {
-  const response = await fetch(`${TODO_URL}${id}/`,{
+  const response = await fetch(`${TODO_URL}${id}`,{
       method: "PUT",
       headers: {"Content-Type": "application/json",},
       body: JSON.stringify(payload)
@@ -47,6 +47,6 @@ export async function updateTodo(id: number,payload: TodoPayload): Promise<Todo>
 }
 
 export async function deleteTodo(id: number): Promise<void> {
-  const response = await fetch(`${TODO_URL}${id}/`,{method: "DELETE",});
+  const response = await fetch(`${TODO_URL}${id}`,{method: "DELETE",});
   await handleResponse<void>(response);
 }
