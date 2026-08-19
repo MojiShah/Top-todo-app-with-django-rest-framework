@@ -112,4 +112,4 @@ class TodoDetailMixinApiView(mixins.RetrieveModelMixin,
     def delete(self,request:Request,pk):
         return self.destroy(request,pk);
         
-    
+#generics region   
