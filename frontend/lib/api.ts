@@ -2,7 +2,7 @@ import { Todo, TodoPayload } from "@/types/todo";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 if (!API_URL) throw new Error("NEXT_PUBLIC_API_URL is not defined");
-const TODO_URL = `${API_URL}todo/mixins/`;
+const TODO_URL = `${API_URL}todo/generics/`;
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
