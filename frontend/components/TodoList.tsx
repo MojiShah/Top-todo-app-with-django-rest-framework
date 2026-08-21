@@ -2,9 +2,10 @@
 
 import { useTodoContext } from "@/context/TodoContext";
 import TodoItem from "./TodoItem";
+import Link from "next/link";
 
 export default function TodoList() {
-  const { todos} = useTodoContext();
+  const { todos } = useTodoContext();
 
   if (todos.length === 0) {
     return (
@@ -16,7 +17,11 @@ export default function TodoList() {
   }
   return (
     <div className="space-y-4">
-      {todos.map(todo=><TodoItem key={todo.id} todo={todo}/>)}
+      {todos.map((todo) => (
+        <Link key={todo.id} href={todo.id.toString()}>
+          <TodoItem todo={todo} />
+        </Link>
+      ))}
     </div>
-  )
+  );
 }

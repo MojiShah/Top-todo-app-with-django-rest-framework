@@ -163,3 +163,5 @@ export function useTodoContext (){
     throw new Error("useTodoContext must be used inside TodoProvider");
   return context;
 }
+
+// export const useTodoContext = () => useContext(TodoContext)
